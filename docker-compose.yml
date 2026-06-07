@@ -10,7 +10,7 @@ services:
     environment:
       - CLICKHOUSE_DB=signoz
       - CLICKHOUSE_USER=signoz
-      - CLICKHOUSE_PASSWORD=changeme
+      - CLICKHOUSE_PASSWORD=***
       - CLICKHOUSE_DEFAULT_ACCESS_MANAGEMENT=1
     ulimits:
       nofile:
@@ -22,6 +22,10 @@ services:
       timeout: 10s
       retries: 3
       start_period: 30s
+    ports:
+      - "8123:8123"
+      - "9000:9000"
+      - "9009:9009"
 
   otel-collector:
     image: signoz/signoz-otel-collector:latest
