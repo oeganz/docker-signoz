@@ -7,18 +7,26 @@ receivers:
         endpoint: 0.0.0.0:4318
 
 exporters:
-  clickhouse:
-    endpoint: http://clickhouse:8123
+  clickhousetraces:
+    endpoint: "http://clickhouse:8123"
+    database: signoz
+    traces_table_name: signoz_traces
+  clickhouselogsexporter:
+    endpoint: "http://clickhouse:8123"
+    database: signoz
+    logs_table_name: signoz_logs
+  signozclickhousemeter:
+    endpoint: "http://clickhouse:8123"
     database: signoz
 
 service:
   pipelines:
     traces:
       receivers: [otlp]
-      exporters: [clickhouse]
+      exporters: [clickhousetraces]
     metrics:
       receivers: [otlp]
-      exporters: [clickhouse]
+      exporters: [signozclickhousemeter]
     logs:
       receivers: [otlp]
-      exporters: [clickhouse]
+      exporters: [clickhouselogsexporter]
