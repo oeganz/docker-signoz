@@ -52,6 +52,10 @@ services:
       - "3301:3301"
     environment:
       - SIGNOZ_CLICKHOUSE_HOST=clickhouse
+      - SIGNOZ_CLICKHOUSE_PORT=9000
+      - SIGNOZ_CLICKHOUSE_USER=signoz
+      - SIGNOZ_CLICKHOUSE_PASSWORD=***
+      - SIGNOZ_CLICKHOUSE_DB=signoz
     depends_on:
       - clickhouse
     healthcheck:
